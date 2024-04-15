@@ -72,7 +72,7 @@ class ilLTIAppEventListener implements \ilAppEventListener
         if ($obj_type == 'tst') {
             // do not report anything until test is finished
             if ($a_status <2) {
-                $break =true);
+                $break =true;
             }
             $status = ilLPStatus::LP_STAUS_IN_PROGRESS_NUM;
         } else {
