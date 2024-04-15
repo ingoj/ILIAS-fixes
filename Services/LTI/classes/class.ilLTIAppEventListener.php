@@ -66,19 +66,37 @@ class ilLTIAppEventListener implements \ilAppEventListener
 
         // iterate through all references
         $refs = ilObject::_getAllReferences($a_obj_id);
+        // special tratment for tests
+        $obj_type = ilObject::_lookupType($a_obj_id);
+        $break = false;
+        if ($obj_type == 'tst') {
+            // do not report anything until test is finished
+            if ($a_status <2) {
+                $break =true);
+            }
+            $status = ilLPStatus::LP_STAUS_IN_PROGRESS_NUM;
+        } else {
+            $status = $a_status;
+        }
+        
+            
         $this->logger->debug('Refs for : ' . $a_obj_id . ': ' . count($refs));
-        foreach ((array) $refs as $ref_id) {
-            $resources = $this->connector->lookupResourcesForUserObjectRelation(
-                $ref_id,
-                $ext_account,
-                (int) $consumer
-            );
 
-            $this->logger->debug('Resources for update:');
-            $this->logger->dump($resources, ilLogLevel::DEBUG);
+        if (!$break) {
+            
+            foreach ((array) $refs as $ref_id) {
+                $resources = $this->connector->lookupResourcesForUserObjectRelation(
+                    $ref_id,
+                    $ext_account,
+                    (int) $consumer
+                );
 
-            foreach ($resources as $resource) {
-                $this->tryOutcomeService((int) $resource, $ext_account, $a_status, $a_percentage);
+                $this->logger->debug('Resources for update:');
+                $this->logger->dump($resources, ilLogLevel::DEBUG);
+
+                foreach ($resources as $resource) {
+                    $this->tryOutcomeService((int) $resource, $ext_account, $status, $a_percentage);
+                }
             }
         }
     }
@@ -111,11 +129,21 @@ class ilLTIAppEventListener implements \ilAppEventListener
                     ilObject::_lookupObjId((int) $resource_ref_id),
                     $usr_id
                 );
+                //special treatment for tests
+                $break = false;
+                if (ilObject::_lookupType((int) $resource_ref_id, true) == 'tst') {
+                    if ($status < 2 ) {
+                        $break = true;
+                    }
+                    $status = ilLPStatus::LP_STATUS_IN_PROGRESS_NUM;
+                }
                 $percentage = ilLPStatus::_lookupPercentage(
                     ilObject::_lookupObjId((int) $resource_ref_id),
                     $usr_id
                 );
-                $this->tryOutcomeService((int) $resource_id, $ext_account, $status, $percentage);
+                if (!$break) {
+                    $this->tryOutcomeService((int) $resource_id, $ext_account, $status, $percentage);
+                }
             }
         }
     }
@@ -149,7 +177,7 @@ class ilLTIAppEventListener implements \ilAppEventListener
         } elseif (!$a_percentage) {
             $score = 0;
         } else {
-            $score = (int) round($a_percentage / 100);
+            $score = round($a_percentage / 100, 4);
         }
 
         $this->logger->debug('Sending score: ' . (string) $score);
