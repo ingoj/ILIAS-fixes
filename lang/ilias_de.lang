@@ -5514,7 +5514,7 @@ common#:#selected_items_back#:#Zurück zu Angeboten
 common#:#selected_languages_updated#:#Die ausgewählten Sprachen wurden aktualisiert (sofern installiert):
 common#:#send#:#Abschicken
 common#:#send_mail#:#Mail versenden
-common#:#sender#:#Absender
+common#:#sender#:#Von
 common#:#sent#:#Gesendet
 common#:#sequence#:#Sequenz
 common#:#sequences#:#Sequenzen
@@ -5791,6 +5791,10 @@ common#:#upload_files#:#Dateien hochladen
 common#:#upload_files_title#:#Dateien hochladen
 common#:#upload_pending#:#Ausstehend
 common#:#upload_settings#:#Upload-Einstellungen
+common#:#upload_svg_rejection_message#:#Eine hochgeladene SVG-Datei enthält möglicherweise bösartigen Code und kann nicht verarbeitet werden.
+common#:#upload_svg_rejection_message_base64#:#Die Datei enthält base64 kodierten Inhalt.
+common#:#upload_svg_rejection_message_elements#:#Die Datei enthält Elemente oder Attribute, die nicht erlaubt oder bekannt sind.
+common#:#upload_svg_rejection_message_script#:#Die Datei enthält Skript-Elemente.
 common#:#uploaded_and_checked#:#Die Datei wurde hochgeladen und überprüft, Sie können sie nun importieren.
 common#:#uploading#:#Hochladen...
 common#:#uri#:#URI
@@ -6213,6 +6217,7 @@ content#:#cont_char_style_code#:#Code
 content#:#cont_char_style_com#:#Kommentar
 content#:#cont_char_style_quot#:#Zitat
 content#:#cont_characteristic#:#Absatzformat
+content#:#cont_characteristic_table#:#Style Tabelle
 content#:#cont_check_values#:#Vom SCO geschickte Werte prüfen
 content#:#cont_check_values_info#:#Das Testwerkzeug prüft die vom SCO geschickten Werte auf Standard-Kompatibilität.<br />Der SCORM-Standard ist sehr genau, was die zu speichernden Daten angeht. Nicht jedes SCORM-Lernmodul ist in seiner Datenausgabe so präzise wie der Standard es eigentlich erfordert. Daher kann das Überprüfen der Werte deaktiviert werden, wenn Sie etwa nur prüfen wollen, ob das Lernmodul in ILIAS lauffähig ist und nicht, ob es genau dem SCORM-Standard entspricht.<br />
 content#:#cont_choose_characteristic#:#Absatzformat auswählen
@@ -6311,6 +6316,7 @@ content#:#cont_dir_file#:#Verzeichnis/Datei
 content#:#cont_dir_renamed#:#Das Verzeichnis wurde umbenannt.
 content#:#cont_disable_def_feedback#:#Standard-Feedback deaktivieren
 content#:#cont_disable_def_feedback_info#:#Das Standard-Feedback zu einer Frage wird nach Beantwortung einer Frage nicht angezeigt.
+content#:#cont_double_click_to_delete#:#Mit einem Doppel-Klick auf ein Content-Element wählen Sie dieses für die De-/Aktivierung und für das Löschen aus.
 content#:#cont_download#:#Download
 content#:#cont_download_no_download#:#Die Download-Funktion ist zur Zeit deaktiviert. Daher wird die Datei den Lernenden nicht angeboten.
 content#:#cont_download_no_menu#:#Das Lernmodulmenü ist zur Zeit deaktiviert. Daher wird die Datei den Lernenden nicht angeboten.
@@ -6461,7 +6467,7 @@ content#:#cont_files#:#Dateien
 content#:#cont_finish_editing#:#Bearbeitung beenden
 content#:#cont_first_open#:#Erstes Fach geöffnet
 content#:#cont_first_page#:#Erste Seite
-content#:#cont_first_row_style#:#Stil der ersten Zeile
+content#:#cont_first_row_style#:#Style erste Zeile
 content#:#cont_fix_tree#:#Struktur reparieren
 content#:#cont_fix_tree_confirm#:#Bitte führen Sie diese Funktion nur aus, wenn die Struktur des Lernmoduls beschädigt ist, z.B. leere Einträge in der Kapitelstruktur auftauchen.
 content#:#cont_fn#:#Fußnote
@@ -7268,6 +7274,7 @@ copg#:#copg_est_reading_time#:#Geschätzte Lesezeit
 copg#:#copg_history_cleanup_cron#:#Verlaufsbereinigung
 copg#:#copg_history_cleanup_cron_info#:#Löscht ältere Einträge aus dem Verlauf des Seiteneditors.
 copg#:#copg_more_character_formats#:#Weitere Zeichenformate
+copg#:#copg_obj_types#:#Objekttypen
 copg#:#copg_page_element_not_found#:#Unbekanntes Seitenelement.
 copg#:#copg_page_type_stys#:#Seitenlayout
 copg#:#copg_par_format_selection#:#Absatzformatauswahl
@@ -11163,6 +11170,7 @@ mcst#:#mcst_automatic_detection#:#Automatisch
 mcst#:#mcst_autoplay#:#Autoplay
 mcst#:#mcst_autoplay_active#:#Autoplay (Standard 'an')
 mcst#:#mcst_autoplay_inactive#:#Autoplay (Standard 'aus')
+mcst#:#mcst_autoplay_info#:#Startet beim Erreichen des Endes eines Videos automatisch das nächste Video. Youtube-Videos unterstützen dieses Verhalten nicht.
 mcst#:#mcst_clear_purpose_title#:#Löschen
 mcst#:#mcst_converted_file#:#Datei wurde umgewandelt.
 mcst#:#mcst_copy#:#Mediacast kopieren
@@ -11179,7 +11187,7 @@ mcst#:#mcst_download_videoportable#:#Video-Datei herunterladen
 mcst#:#mcst_downloadable#:#Download-Link
 mcst#:#mcst_downloadable_info#:#Benutzer können Beiträge direkt herunterladen.
 mcst#:#mcst_duration#:#Laufzeit
-mcst#:#mcst_duration_info#:#Wenn kein Wert eingegeben wird, bestimmt ILIAS die Laufzeit automatisch
+mcst#:#mcst_duration_info#:#Falls dieser Wert auf Null steht, konnte die Laufzeit nicht automatisch bestimmt werden. Bitte tragen Sie dann die Laufzeit manuell ein.
 mcst#:#mcst_edit_item#:#Mediacast-Beitrag bearbeiten
 mcst#:#mcst_edit_settings#:#Einstellungen
 mcst#:#mcst_extract_preview_image#:#Vorschaubild erzeugen
@@ -12735,6 +12743,7 @@ prg#:#prg_autoassignment#:#(automatisch)
 prg#:#prg_belongs_to#:#Gehört Zu
 prg#:#prg_can_not_manage_in_repo#:#Sie dürfen dieses Studienprogramm nicht verwalten, da Ihm bereits Mitglieder zugeordnet sind.
 prg#:#prg_cancel#:#Abbrechen
+prg#:#prg_cancel_acknowledge_completed_courses#:#Keine Kurse anerkennen
 prg#:#prg_cancel_tree_order#:#Reihenfolge des Baums verwerfen.
 prg#:#prg_change_deadline#:#Stichtag anpassen
 prg#:#prg_change_expire_date#:#Ablauf der Qualifikation anpassen
@@ -16683,6 +16692,22 @@ ui#:#datetime_required#:#Zeit/Datum erforderlich
 ui#:#duration_default_label_end#:#Ende
 ui#:#duration_default_label_start#:#Beginn
 ui#:#duration_end_must_not_be_earlier_than_start#:#Der Beginn muss zeitlich vor dem Ende liegen.
+ui#:#label_fieldselection#:#Spaltenauswahl
+ui#:#label_fieldselection_refresh#:#Anwenden
+ui#:#label_pagination_limit#:#Pagination - Anzahl der Zeilen
+ui#:#label_pagination_offset#:#Pagination - Start
+ui#:#label_sortation#:#Sortierung
+ui#:#order_option_alphabetical_ascending#:#A bis Z
+ui#:#order_option_alphabetical_descending#:#Z bis A
+ui#:#order_option_chronological_ascending#:#Älteste zuerst
+ui#:#order_option_chronological_descending#:#Neueste zuerst
+ui#:#order_option_first#:#zuerst
+ui#:#order_option_generic_ascending#:#aufsteigend
+ui#:#order_option_generic_descending#:#absteigend
+ui#:#order_option_numerical_ascending#:#0 bis 9
+ui#:#order_option_numerical_descending#:#9 bis 0
+ui#:#presentation_table_collapse#:#alle minimieren
+ui#:#presentation_table_expand#:#alle zeigen
 ui#:#ui_chars_max#:#Maximum:
 ui#:#ui_chars_min#:#Minimum:
 ui#:#ui_chars_remaining#:#Verbleibende Buchstaben

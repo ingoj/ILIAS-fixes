@@ -978,6 +978,7 @@ class ilTestEvaluationGUI extends ilTestServiceGUI
         $template->setVariable("PASS_DETAILS", $this->ctrl->getHTML($overviewTableGUI));
 
         $data = $this->object->getCompleteEvaluationData();
+        $data->getParticipant($active_id)->setPassScoring($pass);
         $result = $data->getParticipant($active_id)->getReached() . " " . strtolower($this->lng->txt("of")) . " " . $data->getParticipant($active_id)->getMaxpoints() . " (" . sprintf("%2.2f", $data->getParticipant($active_id)->getReachedPointsInPercent()) . " %" . ")";
         $template->setCurrentBlock('total_score');
         $template->setVariable("TOTAL_RESULT_TEXT", $this->lng->txt('tst_stat_result_resultspoints'));
@@ -2079,6 +2080,14 @@ class ilTestEvaluationGUI extends ilTestServiceGUI
             $this->redirectBackToParticipantsScreen();
         }
 
+        $testSession = new ilTestSession();
+        $testSession->loadFromDb($activeId);
+
+        if ($testSession->isSubmitted()) {
+            $this->tpl->setOnScreenMessage('failure', $this->lng->txt('tst_already_submitted'), true);
+            $this->redirectBackToParticipantsScreen();
+        }
+
         if (($this->object->isEndingTimeEnabled() || $this->object->getEnableProcessingTime())
             && !$this->object->endingTimeReached()
             && !$this->object->isMaxProcessingTimeReached(
@@ -2117,21 +2126,27 @@ class ilTestEvaluationGUI extends ilTestServiceGUI
         $participantData->setParticipantAccessFilter($accessFilter);
         $participantData->load($this->object->getTestId());
 
-        if (in_array($activeId, $participantData->getActiveIds())) {
-            $testSession = new ilTestSession();
-            $testSession->loadFromDb($activeId);
-
-            assQuestion::_updateTestPassResults(
-                $activeId,
-                $testSession->getPass(),
-                $this->object->areObligationsEnabled(),
-                null,
-                $this->object->getId()
-            );
-
-            $this->finishTestPass($activeId, $this->object->getId());
+        if (!in_array($activeId, $participantData->getActiveIds())) {
+            $this->redirectBackToParticipantsScreen();
         }
 
+        $testSession = new ilTestSession();
+        $testSession->loadFromDb($activeId);
+
+        if ($testSession->isSubmitted()) {
+            $this->tpl->setOnScreenMessage('failure', $this->lng->txt('tst_already_submitted'), true);
+            $this->redirectBackToParticipantsScreen();
+        }
+
+        assQuestion::_updateTestPassResults(
+            $activeId,
+            $testSession->getPass(),
+            $this->object->areObligationsEnabled(),
+            null,
+            $this->object->getId()
+        );
+
+        $this->finishTestPass($activeId, $this->object->getId());
 
         $this->redirectBackToParticipantsScreen();
     }
