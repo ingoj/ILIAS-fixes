@@ -52,6 +52,7 @@ class ilRoleAssignmentTableGUI extends ilTable2GUI
         $this->setDefaultOrderField("title");
         $this->setDefaultOrderDirection("asc");
         $this->setDisableFilterHiding(true);
+        $this->editAccess = $rbacsystem->checkAccess("edit_roleassignment", USER_FOLDER_ID);
         $this->addColumn("", "", "1", true);
         $this->addColumn($this->lng->txt("role"), "title");
         $this->addColumn($this->lng->txt("description"), "description");
@@ -92,11 +93,15 @@ class ilRoleAssignmentTableGUI extends ilTable2GUI
         $option[4] = $lng->txt('internal_local_roles_only');
         $option[5] = $lng->txt('non_internal_local_roles_only');
 
-        $si = new ilSelectInputGUI($lng->txt("roles"), "role_filter");
-        $si->setOptions($option);
-        $this->addFilterItem($si);
-        $si->readFromSession();
-        $this->filter["role_filter"] = $si->getValue();
+        if ($this->editAccesss) {
+            $si = new ilSelectInputGUI($lng->txt("roles"), "role_filter");
+            $si->setOptions($option);
+            $this->addFilterItem($si);
+            $si->readFromSession();
+            $this->filter["role_filter"] = $si->getValue();
+        } else {
+            $this->filter["role_filter"] = 0;
+        }
     }
 
     protected function fillRow(array $a_set): void // Missing array type.
